@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="20b-115-se.css">
+    <title>20B-115-SE Muhammad Waleed Lab#01 Lab Task#01</title>
+</head>
+<body>
+    <div class="container">
+        <form action="">
+            <h1>
+                Login Form
+            </h1>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" required>
+            </div>
+            <div class="form-group">
+                <label for="pass">Password</label>
+                <input type="password" required>
+            </div>
+            <div class="form-group btnContainer">
+                <input type="button" value="Login" onclick="handleClick(this)">
+                <input type="button" value="Cancel" onclick="handleClick(this)">
+            </div>
+        </form>
+    </div>
+    <script>
+        function handleClick(e) {
+            if (e.value === "Login") {
+                alert("Login Button is Clicked!");
+            } else {
+                alert("Cancel Button is Clicked!");
+            }
+        }
+    </script>
+</body>
+</html>
