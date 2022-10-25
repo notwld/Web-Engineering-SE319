@@ -21,6 +21,17 @@
       align-items: center;
       height: 100vh;
     }
+    .introduction{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .introduction img{
+        margin-top: 10px;
+        width: 100px;
+        height: 100px;
+    }
     table {
       margin-top: 25px;
     }
@@ -37,6 +48,9 @@
       margin: 25px;
       padding: 7px;
       cursor: pointer;
+    }
+    .interests{
+        width: 70%;
     }
   </style>
   <body>
@@ -56,9 +70,11 @@
                 Add link using a tag pointing to UIT university home page. 
 My work -->
     <div class="container">
-      <h1>Muhammad Waleed</h1>
-      <p>hi, i'm waleed and my roll no is 20b-115-se</p>
-      <img src="" alt="">
+     <div class="introduction">
+        <h1>Muhammad Waleed</h1>
+        <p>hi, i'm waleed and my roll no is 20b-115-se</p>
+        <img src="77747037.jfif" alt="">
+     </div>
       <table>
         <thead>
           <tr>
@@ -86,9 +102,11 @@ My work -->
         </tbody>
       </table>
       <div class="interests">
+        <h1>My Interests</h1>
         <span>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum repudiandae, quis assumenda numquam totam, voluptatum, debitis sequi magnam doloremque quibusdam consequuntur cum? Quo, est possimus blanditiis at tempora doloribus maiores!
         </span>
+        <a href="">Click Here</a>
       </div>
       <div class="btns">
         <button onclick="addCourse()">Add new Course</button>
