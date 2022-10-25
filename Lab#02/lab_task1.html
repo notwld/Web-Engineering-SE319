@@ -80,7 +80,7 @@
             const batch= student.split(',')[1]
             if (studentId) {
                 const row = document.getElementById('row' + studentId); 
-                row.children[2].innerHTML = batch
+                row.lastElementChild.innerHTML = batch
             }
         }
     </script>

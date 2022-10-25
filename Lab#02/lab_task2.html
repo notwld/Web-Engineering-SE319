@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: monospace;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    table {
+      margin-top: 25px;
+    }
+    tr,
+    th,
+    td {
+      font-size: 20px;
+      padding: 7px;
+    }
+    .btns {
+      display: block;
+    }
+    .btns button {
+      margin: 25px;
+      padding: 7px;
+      cursor: pointer;
+    }
+  </style>
+  <body>
+    <!-- 2.     Create a new course Profile page  
+
+                Add Title using suitable h1 or h2 tag 
+                Add an introduction paragraph along with image using p and img tags respectively 
+                Add a table listing down courses taken using table tag 
+                Add Course Id, Course Name, Credit Hours, and year taken in 
+                Add at least four courses using row tag 
+                At the bottom of table, create a div tag and add following buttons 
+                Search and highlight the course row input by the user (using window.prompt) 
+                Add new Course 
+                Update Course 
+                Remove Course 
+                Add Interests section 
+                Add link using a tag pointing to UIT university home page. 
+My work -->
+    <div class="container">
+      <h1>Muhammad Waleed</h1>
+      <p>hi, i'm waleed and my roll no is 20b-115-se</p>
+      <img src="" alt="">
+      <table>
+        <thead>
+          <tr>
+            <th>Course #</th>
+            <th>Course Name</th>
+            <th>Credit Hours</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr id="row1" class="row">
+            <td>Course 1</td>
+            <td>Web Engineering</td>
+            <td>2</td>
+          </tr>
+          <tr id="row2" class="row">
+            <td>Course 2</td>
+            <td>Database Systems</td>
+            <td>3</td>
+          </tr>
+          <tr id="row3" class="row">
+            <td>Course 3</td>
+            <td>Data Mining</td>
+            <td>2</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="interests">
+        <span>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum repudiandae, quis assumenda numquam totam, voluptatum, debitis sequi magnam doloremque quibusdam consequuntur cum? Quo, est possimus blanditiis at tempora doloribus maiores!
+        </span>
+      </div>
+      <div class="btns">
+        <button onclick="addCourse()">Add new Course</button>
+        <button onclick="updateCourse()">Update Course</button>
+        <button onclick="removeCourse()">Remove Course</button>
+      </div>
+    </div>
+  </body>
+  <script>
+    function addCourse() {
+      const course = prompt("Enter course: ");
+      const row = document.createElement("tr");
+      const body = document.querySelector("tbody");
+      const tdcourseId = document.createElement("td");
+      const tdCourseName = document.createElement("td");
+      const tdCreditHours = document.createElement("td");
+      const courseId = course.split(",")[0];
+      const CourseName = course.split(",")[1];
+      const credit = course.split(",")[2];
+      row.id = "row" + courseId;
+      tdcourseId.innerHTML = "Course " + courseId;
+      tdCourseName.innerHTML = CourseName;
+      tdCreditHours.innerHTML = credit;
+      row.appendChild(tdcourseId);
+      row.appendChild(tdCourseName);
+      row.appendChild(tdCreditHours);
+      body.appendChild(row);
+    }
+    function updateCourse() {
+        const course = prompt('Please enter course# and credit');
+            const courseId = course.split(',')[0]
+            const credit= course.split(',')[1]
+            if (courseId) {
+                const row = document.getElementById('row' + courseId); 
+                row.children[2].innerHTML = credit
+            }
+    }
+    function removeCourse() {
+      const courseId = prompt("Please enter course#");
+      if (courseId) {
+        const row = document.getElementById("row" + courseId);
+        if (row) {
+          const body = document.querySelector("tbody");
+          body.removeChild(row);
+        }
+      }
+    }
+  </script>
+</html>
