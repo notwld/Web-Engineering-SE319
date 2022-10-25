@@ -43,7 +43,7 @@
             //1 - Find the 'body' element
             const body = document.querySelector('tbody');
             //2 - Create elements using document.createElement
-            API(method)
+            // API(method)
             const row = document.createElement('tr');
             //Create 'tr' element
             const tdStudentID = document.createElement('td');
@@ -81,15 +81,24 @@
             if (studentId) {
                 //Find the row containing the 'course #'
                 // entered by the user
-                const row = document.getElementById('row' +
-                    studentId);
+                const row = document.getElementById('row' + studentId);
                 if (row) {
                     //Find the parent of the 'row' just found
                     // so that it can be removed from its child list
-                    const body =
-                        document.querySelector('tbody');
+                    const body = document.querySelector('tbody');
                     //Finally remove it from 'tbody' element
                     body.removeChild(row);
+                }
+            }
+        }
+        function updateStudent() {
+            const student = prompt("Enter student Id and batch:")
+            const studentId = student.split(',')[0]
+            const batch = student.split(',')[1]
+            if (studentId) {
+                const row = document.getElementById('row' + studentId);
+                if(row){
+                    row.firstElementChild.nextElementSibling.nextElementSibling.innerHTML = batch
                 }
             }
         }
