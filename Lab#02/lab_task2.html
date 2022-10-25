@@ -34,6 +34,8 @@
     }
     table {
       margin-top: 25px;
+      margin-bottom: 25px;
+      border: 2px solid black;
     }
     tr,
     th,
@@ -49,8 +51,16 @@
       padding: 7px;
       cursor: pointer;
     }
+    .interests h1{
+        text-align: center;
+        margin-bottom: 5px;
+    }
     .interests{
         width: 70%;
+    }
+    th{
+        border-bottom:2px solid black ;
+        border-right:2px solid black ;
     }
   </style>
   <body>
@@ -81,6 +91,7 @@ My work -->
             <th>Course #</th>
             <th>Course Name</th>
             <th>Credit Hours</th>
+            <th>Year</th>
           </tr>
         </thead>
         <tbody>
@@ -88,16 +99,19 @@ My work -->
             <td>Course 1</td>
             <td>Web Engineering</td>
             <td>2</td>
+            <td>2022</td>
           </tr>
           <tr id="row2" class="row">
             <td>Course 2</td>
             <td>Database Systems</td>
             <td>3</td>
+            <td>2022</td>
           </tr>
           <tr id="row3" class="row">
             <td>Course 3</td>
             <td>Data Mining</td>
             <td>2</td>
+            <td>2022</td>
           </tr>
         </tbody>
       </table>
@@ -106,12 +120,13 @@ My work -->
         <span>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum repudiandae, quis assumenda numquam totam, voluptatum, debitis sequi magnam doloremque quibusdam consequuntur cum? Quo, est possimus blanditiis at tempora doloribus maiores!
         </span>
-        <a href="">Click Here</a>
+        <a href="https://www.uitu.edu.pk">Click Here</a>
       </div>
       <div class="btns">
         <button onclick="addCourse()">Add new Course</button>
         <button onclick="updateCourse()">Update Course</button>
         <button onclick="removeCourse()">Remove Course</button>
+        <button onclick="highlight()">Search</button>
       </div>
     </div>
   </body>
@@ -123,25 +138,31 @@ My work -->
       const tdcourseId = document.createElement("td");
       const tdCourseName = document.createElement("td");
       const tdCreditHours = document.createElement("td");
+      const tdyear = document.createElement("td");
       const courseId = course.split(",")[0];
       const CourseName = course.split(",")[1];
       const credit = course.split(",")[2];
+      const year = course.split(",")[3];
       row.id = "row" + courseId;
       tdcourseId.innerHTML = "Course " + courseId;
       tdCourseName.innerHTML = CourseName;
       tdCreditHours.innerHTML = credit;
+      tdyear.innerHTML = year
       row.appendChild(tdcourseId);
       row.appendChild(tdCourseName);
       row.appendChild(tdCreditHours);
+      row.appendChild(tdyear);
       body.appendChild(row);
     }
     function updateCourse() {
-        const course = prompt('Please enter course# and credit');
+        const course = prompt('Please enter course#, credit, year. ');
             const courseId = course.split(',')[0]
             const credit= course.split(',')[1]
+            const year= course.split(',')[2]
             if (courseId) {
                 const row = document.getElementById('row' + courseId); 
-                row.children[2].innerHTML = credit
+                row.lastElementChild.innerHTML = year
+                row.lastElementChild.previousElementSibling.innerHTML = credit
             }
     }
     function removeCourse() {
@@ -151,6 +172,15 @@ My work -->
         if (row) {
           const body = document.querySelector("tbody");
           body.removeChild(row);
+        }
+      }
+    }
+    function highlight() {
+        const courseId = prompt("Please enter course#");
+      if (courseId) {
+        const row = document.getElementById("row" + courseId);
+        if (row) {
+          row.style.backgroundColor= 'yellow'
         }
       }
     }
