@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lab 2 – DOM and BOM</title>
+</head>
+
+<body>
+    <table id="studentNames" class="students">
+        <thead>
+            <tr>
+                <th>Student #</th>
+                <th>Student Name</th>
+                <th>Batch</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="row1" class="row">
+                <td>Student 1</td>
+                <td>Abdul Hafeez</td>
+                <td>2021</td>
+            </tr>
+            <tr id="row2" class="row">
+                <td>Student 2</td>
+                <td>Arsalan Latif</td>
+                <td>2019</td>
+            </tr>
+            <tr id="row3" class="row">
+                <td>Student 3</td>
+                <td>Muzammil Ali</td>
+                <td>2018</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        //document.getElementById - Search by element's ID
+        console.log(document.getElementById('studentNames'));
+        //document.getElementByClassName - Search by element's CSS
+        // class name
+        console.log(document.getElementsByClassName('row').length);
+        //document.getElementsByTagName - Search by element's tag
+        name
+        console.log(document.getElementsByTagName('row').length);
+        //document.querySelector - Generic search using any of CSS
+        selector
+        console.log(document.querySelector('#row1'));
+        //Search element using ID
+        console.log(document.querySelector('#row3'));
+        //Search element using ID
+        console.log(document.querySelector('.row'));
+        //Search first element from document top using CSS class
+        name
+        console.log(document.querySelectorAll('tr').length);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lab 2 – DOM and BOM</title>
+</head>
+
+<body>
+    <table id="studentNames" class="students">
+        <thead>
+            <tr>
+                <th>Student #</th>
+                <th>Student Name</th>
+                <th>Batch</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="row1" class="row">
+                <td>Student 1</td>
+                <td>Abdul Hafeez</td>
+                <td>2021</td>
+            </tr>
+            <tr id="row2" class="row">
+                <td>Student 2</td>
+                <td>Arsalan Latif</td>
+                <td>2019</td>
+            </tr>
+            <tr id="row3" class="row">
+                <td>Student 3</td>
+                <td>Muzammil Ali</td>
+                <td>2018</td>
+            </tr>
+        </tbody>
+    </table>
+    </br>
+    <input type="button" value="Add New Student" onclick="addNewStudent();" />
+    <input type="button" value="Delete Student" onclick="deleteStudent();" />
+    <input type="button" value="Update Student" onclick="updateStudent();" />
+    <script>
+        //This declarative function will be called on 'Add New
+        // Row' button click and add new row
+        function addNewStudent() {
+            //1 - Find the 'body' element
+            const body = document.querySelector('tbody');
+            //2 - Create elements using document.createElement
+            API(method)
+            const row = document.createElement('tr');
+            //Create 'tr' element
+            const tdStudentID = document.createElement('td');
+            //Create 'td' element
+            const tdStudentName = document.createElement('td');
+            //Create 'td' element
+            const tdBatch = document.createElement('td');
+            //Create 'td' element
+            const studentId = ((Math.round(Math.random() *
+                100)) + 4);
+            const studentName = ((Math.round(Math.random() *
+                500)) + 50);
+            const batch = (Math.round(Math.random() * 2020)) +
+                2020;
+            row.id = 'row' + studentId;
+            //3 - Update td's 'innerHTML' (basically element
+            // content - anything within the angle brackets)
+            tdStudentID.innerHTML = 'Student ' + studentId;
+            tdStudentName.innerHTML = 'Student - DOM - ' +
+                studentName;
+            tdBatch.innerHTML = batch;
+            //4 - Insert newly created 'td's into newly created
+            // 'tr' using element's appendChild API
+            row.appendChild(tdStudentID);
+            row.appendChild(tdStudentName);
+            row.appendChild(tdBatch);
+            //5 - Finally insert newly created 'row' into
+            // 'body' element
+            body.appendChild(row);
+        }
+        function deleteStudent() {
+            //Ask for course# using prompt
+            const studentId = prompt('Please enter course#');
+            //If user has entered course#
+            if (studentId) {
+                //Find the row containing the 'course #'
+                // entered by the user
+                const row = document.getElementById('row' +
+                    studentId);
+                if (row) {
+                    //Find the parent of the 'row' just found
+                    // so that it can be removed from its child list
+                    const body =
+                        document.querySelector('tbody');
+                    //Finally remove it from 'tbody' element
+                    body.removeChild(row);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

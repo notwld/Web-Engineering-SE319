@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lab 2 – DOM and BOM</title>
+</head>
+
+<body>
+    <div>
+        <h1>Window</h1>
+        <input type="button" value="Open window" onclick="openWindow()" />
+    </div>
+    <div>
+        <h1>Location</h1>
+        <input type="button" value="Goto Location" onclick="gotoLocation()" />
+    </div>
+    <div>
+        <h1>Navigator</h1>
+        <input type="button" value="Browser Name" onclick="showBrowserName()" />
+        <input type="button" value="Browser Language" onclick="showBrowserLanguage()" />
+    </div>
+    <div>
+        <h1>Screen</h1>
+        <input type="button" value="Screen Size" onclick="showScreenSize()" />
+        <input type="button" value="Screen Orientation" onclick="showScreenOrientation()" />
+    </div>
+    <div>
+        <h1>History</h1>
+        <h3 style="color:red">Note: To move backward, first
+            visit any site and then load your page and click Backward button.
+            To move forward, first load your page and then visit any site and
+            comeback to your page and click Forward button</h3>
+        <input type="button" value="Forward" onclick="moveForward()" />
+        <input type="button" value="Backward" onclick="moveBackward()" />
+    </div>
+    <script>
+        //Open a new window and point it to google.com
+        function openWindow() {
+    //Ask from the user to enter delay before opening the
+    // window using window.prompt
+            const delay = window.prompt('Enter the delay in seconds to wait before opening the window');
+    //Wait 2 seconds (2000 milliseconds) using
+    // 'window.setTimeout' before opening the window
+    window.setTimeout(function () {
+                //Show the window using 'window.open'
+                window.open('https://www.google.com');
+                //Finally, show the message using 'window.alert'
+                // for success
+    window.alert('New window has been opened'); },
+                parseInt(delay) * 1000);
+        }
+        //Goto to location
+        function gotoLocation() {
+    //Ask the user to enter the url she wants to replace
+    // current page with
+    const url = window.prompt('Enter the url to visit to (start with http(s))? '); 
+    if (url) {
+//Visit the url provided by the user within the
+// same page using window.location
+                window.location = url;
+            }
+        }
+        //Show browser name
+        function showBrowserName() {
+            window.alert(window.navigator.appName);
+        }
+        //Show browser language
+        function showBrowserLanguage() {
+            window.alert(window.navigator.language);
+        }
+        //Show screen size
+        function showScreenSize() {
+            window.alert(`screen width: ${window.screen.width},
+screen height: ${window.screen.height}`);
+        }
+        //Show screen orientation
+        function showScreenOrientation() {
+            window.alert(window.screen.orientation.type);
+        }
+        //Move forward in browser history from the current position
+        function moveForward() {
+            window.history.forward();
+        }
+        //Move backward in browser history from the current
+        position
+        function moveBackward() {
+            window.history.back();
+        }
+    </script>
+</body>
+
+</html>
