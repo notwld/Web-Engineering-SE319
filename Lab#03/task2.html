@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> Lab # 3 – JQuery & AJAX</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+      integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+</head>
+
+<body>
+    <div id="test">
+        <p>This is dummy Text.</p>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                $("#test").hide();
+            });
+        });
+    </script>
+</body>
+
+</html>
+<button>Click me</button>
+<div id="test">
+    <p>This is dummy Text.</p>
+</div>
+<script>
+    $(document).ready(function () {
+        $("button").click(function () {
+            $("#test").hide();
+        });
+    });
+</script>
+</body>
+
+</html>

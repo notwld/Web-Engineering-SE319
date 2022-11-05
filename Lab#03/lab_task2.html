@@ -34,18 +34,18 @@
         card.style.setProperty("--mouse-y", `${y}px`);
       }
     };
- 
+
     const appendData = (data) => {
-      if(data){
+      if (data) {
         let card = document.createElement("div");
-      let celcius = Math.round(parseFloat(data.main.temp) - 273.15);
-      let date = new Date();
-      let day = date.getDate();
-      let month = date.toLocaleString("default", { month: "short" });
-      let year = date.getFullYear();
-      let dateToday = day + " " + month + " " + year;
-      
-      card.innerHTML = `
+        let celcius = Math.round(parseFloat(data.main.temp) - 273.15);
+        let date = new Date();
+        let day = date.getDate();
+        let month = date.toLocaleString("default", { month: "short" });
+        let year = date.getFullYear();
+        let dateToday = day + " " + month + " " + year;
+
+        card.innerHTML = `
         <div class="card">
           <div class="card-content">
             <div class='date'>${dateToday}</div>
@@ -66,17 +66,16 @@
           </div>
         </div>
         `;
-      cards.appendChild(card);
-      return true
-      }
-      else{
-        $('.card').remove()
+        cards.appendChild(card);
+        return true;
+      } else {
+        $(".card").remove();
         const majorCities = ["Karachi", "Lahore", "Islamabad"];
         majorCities.forEach((city) => {
           appendData(JSON.parse(localStorage.getItem(city)));
-      });
-            errHandler('City not found. Using local storage data');
-            return false
+        });
+        errHandler("City not found. Using local storage data");
+        return false;
       }
     };
 
@@ -91,10 +90,10 @@
       $.ajax({
         url: url,
         statusCode: {
-          404: function() {
-            errHandler('City not found.');
+          404: function () {
+            errHandler("City not found.");
             appendData(JSON.parse(localStorage.getItem(city)));
-          }
+          },
         },
         success: function (data) {
           // console.log(data);
@@ -105,9 +104,7 @@
           // alert("City not found");
           let savedData = JSON.parse(localStorage.getItem(city));
           appendData(savedData);
-          errHandler(
-            `City not found. Using local storage data`
-          );
+          errHandler(`City not found. Using local storage data`);
         },
       });
     };
@@ -134,6 +131,10 @@
         if (city != "" && city.length > 3) {
           $(".card").remove();
           weatherReport(city);
+        } else if (city === "") {
+          $(".card").remove();
+          onLoad(majorCities);
+          errHandler("Please enter a city name");
         } else {
           // $(".card").remove();
           // onLoad(majorCities);

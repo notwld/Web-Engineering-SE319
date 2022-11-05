@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Lab # 3 - JQuery & AJAX</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <input
+          type="text"
+          id="myInput"
+          class="form-control"
+          placeholder="Search"
+        />
+      </div>
+      <div class="row">
+        <table
+          class="table table-bordered"
+          id="myTable"
+          width="100%"
+          cellspacing="0"
+        >
+          <thead>
+            <tr>
+              <th>Currency Code</th>
+              <th>Conversion</th>
+            </tr>
+          </thead>
+          <tbody id="TBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+  <script>
+    $(document).ready(function () {
+      $("#myInput").on("keypress", function (e) {
+        if (e.which == 13) {
+          var value = $(this).val().toUpperCase();
+          $.ajax({
+            url: "https://open.er-api.com/v6/latest/" + value,
+            dataType: "json",
+            type: "GET",
+            Headers: {
+              "Access-Control-Allow-Origin": "*",
+            },
+            success: function (data, status, xhr) {
+              var oRates = data.rates;
+              var html = "";
+              for (var o in oRates) {
+                if (oRates.hasOwnProperty(o)) {
+                  html += `<tr>
+                                    <td>${o}</td>
+                                    <td>${oRates[o]}</td>
+                                    </tr>`;
+                }
+              }
+              $("#TBody").html(html);
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+              alert(errorMessage);
+            },
+          });
+        }
+      });
+    });
+  </script>
+</html>
