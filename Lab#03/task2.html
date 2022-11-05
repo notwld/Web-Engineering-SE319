@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+      integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <title>JQuery AJAX</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <input type="text" placeholder="Enter City" id="searchBar" />
+        <a class="btn">Search</a>
+      </div>
+      <div id="cards"></div>
+    </div>
+  </body>
+  <script>
+    document.getElementById("cards").onmousemove = (e) => {
+      for (const card of document.getElementsByClassName("card")) {
+        const rect = card.getBoundingClientRect(),
+          x = e.clientX - rect.left,
+          y = e.clientY - rect.top;
+
+        card.style.setProperty("--mouse-x", `${x}px`);
+        card.style.setProperty("--mouse-y", `${y}px`);
+      }
+    };
+ 
+    const appendData = (data) => {
+      if(data){
+        let card = document.createElement("div");
+      let celcius = Math.round(parseFloat(data.main.temp) - 273.15);
+      let date = new Date();
+      let day = date.getDate();
+      let month = date.toLocaleString("default", { month: "short" });
+      let year = date.getFullYear();
+      let dateToday = day + " " + month + " " + year;
+      
+      card.innerHTML = `
+        <div class="card">
+          <div class="card-content">
+            <div class='date'>${dateToday}</div>
+            <div class="card-image">
+              <img src='https://openweathermap.org/img/w/${data.weather[0].icon}.png' />
+            </div>
+            <div class="card-info-wrapper">
+              <div class="card-info">
+                <i class="fa-duotone fa-apartment"></i>
+                <div class="card-info-title">
+                  <h2>${data.name}</h2>
+                  <hr>
+                  <h4>${celcius}°C - ${data.weather[0].main}</h4>
+                  <h4>Wind: ${data.wind.speed} m/s - ${data.wind.deg}°</h4>
+                </div>    
+              </div>
+            </div>
+          </div>
+        </div>
+        `;
+      cards.appendChild(card);
+      return true
+      }
+      else{
+        $('.card').remove()
+        const majorCities = ["Karachi", "Lahore", "Islamabad"];
+        majorCities.forEach((city) => {
+          appendData(JSON.parse(localStorage.getItem(city)));
+      });
+            errHandler('City not found. Using local storage data');
+            return false
+      }
+    };
+
+    const searchBar = document.getElementById("searchBar");
+    const btn = document.querySelector(".btn");
+    const cards = document.getElementById("cards");
+
+    const weatherReport = async (city) => {
+      let apiKey = "475d100ea49df06e8dc80df05fd5f085";
+      let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+
+      $.ajax({
+        url: url,
+        statusCode: {
+          404: function() {
+            errHandler('City not found.');
+            appendData(JSON.parse(localStorage.getItem(city)));
+          }
+        },
+        success: function (data) {
+          // console.log(data);
+          appendData(data);
+          localStorage.setItem(city, JSON.stringify(data));
+        },
+        error: function (err) {
+          // alert("City not found");
+          let savedData = JSON.parse(localStorage.getItem(city));
+          appendData(savedData);
+          errHandler(
+            `City not found. Using local storage data`
+          );
+        },
+      });
+    };
+
+    const errHandler = (message) => {
+      $("#msg").remove();
+      let msg = document.createElement("div");
+      msg.id = "msg";
+      msg.innerHTML = message;
+      $(".container").prepend(msg);
+    };
+    const onLoad = (majorCities) => {
+      majorCities.forEach((city) => {
+        weatherReport(city);
+      });
+    };
+
+    $(document).ready(() => {
+      const majorCities = ["Karachi", "Lahore", "Islamabad"];
+      onLoad(majorCities);
+      $(".btn").click(() => {
+        $("#msg").remove();
+        let city = searchBar.value.toLowerCase();
+        if (city != "" && city.length > 3) {
+          $(".card").remove();
+          weatherReport(city);
+        } else {
+          // $(".card").remove();
+          // onLoad(majorCities);
+          errHandler("Please enter a valid city name");
+        }
+      });
+      $("#searchBar").keypress((e) => {
+        $("#msg").remove();
+        if (e.which == 13 && searchBar.value != "") {
+          $(".btn").click();
+        }
+      });
+    });
+  </script>
+</html>
