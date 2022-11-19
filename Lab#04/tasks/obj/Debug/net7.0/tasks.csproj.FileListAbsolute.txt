@@ -1,5 +1,0 @@
-C:\Users\ADMIN\Desktop\WE\Labs\Lab#04\tasks\obj\Debug\net7.0\tasks.csproj.AssemblyReference.cache
-C:\Users\ADMIN\Desktop\WE\Labs\Lab#04\tasks\obj\Debug\net7.0\tasks.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\ADMIN\Desktop\WE\Labs\Lab#04\tasks\obj\Debug\net7.0\tasks.AssemblyInfoInputs.cache
-C:\Users\ADMIN\Desktop\WE\Labs\Lab#04\tasks\obj\Debug\net7.0\tasks.AssemblyInfo.cs
-C:\Users\ADMIN\Desktop\WE\Labs\Lab#04\tasks\obj\Debug\net7.0\tasks.csproj.CoreCompileInputs.cache
